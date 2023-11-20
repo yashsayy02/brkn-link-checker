@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Home() {
   const [links, setLinks] = useState();
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("http://localhost:3000");
+  const [url, setUrl] = useState("");
   const [dataFetch, setDataFetch] = useState(false);
 
   const checkBrokenLinks = async() => {
@@ -14,6 +14,12 @@ export default function Home() {
       setLoading(false);
       setDataFetch(true);
       const results = await axios.post('/api/checklinks', {pageURL: url})
+      // const results = await fetch("/api/checklinks", {
+      //     method: "POST",
+      //     body: JSON.stringify({
+      //         pageURL: "http://google.com"
+      //     }),
+      // });
 
       console.log("results are fetched");
       console.log(results.data);
@@ -86,17 +92,6 @@ export default function Home() {
                       )}
                   </div>
               )}
-          </div>
-
-          <div className="p-4">
-              <a href="https://www.google.com">google</a>
-              <br></br>
-              <a href="https://www.google.com/yash">google404</a>
-              <br></br>
-              <a href="https://www.google.com">google</a>
-              <br></br>
-
-              {links ? "" : "no brkn links"}
           </div>
       </>
   );

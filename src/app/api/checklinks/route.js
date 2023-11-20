@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const POST = async (req) => {
     const {pageURL} = req.body;
-    console.log("req", req.body)
+    console.log("req", req.body, "page", pageURL)
 
     try{
         const response = await axios.get(

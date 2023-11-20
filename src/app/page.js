@@ -6,14 +6,14 @@ import axios from "axios";
 export default function Home() {
   const [links, setLinks] = useState();
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("http://localhost:3000");
   const [dataFetch, setDataFetch] = useState(false);
 
   const checkBrokenLinks = async() => {
 
       setLoading(false);
       setDataFetch(true);
-      const results = await axios.post('/api/checklinks', {pageURL: "http://localhost:3000"})
+      const results = await axios.post('/api/checklinks', {pageURL: url})
 
       console.log("results are fetched");
       console.log(results.data);
@@ -49,7 +49,11 @@ export default function Home() {
               </button>
           </div>
 
-          {dataFetch && !loading && <div className="text-center font-extrabold text-2xl ">Loading... (may take a few minutes)</div>}
+          {dataFetch && !loading && (
+              <div className="text-center font-bold text-2xl ">
+                  Loading... (may take a few minutes)
+              </div>
+          )}
 
           <div className="text-center border-0">
               {loading && (

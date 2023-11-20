@@ -2,11 +2,12 @@ import * as cheerio from "cheerio";
 import axios from "axios";
 
 export const POST = async (req) => {
-    
+    const {pageURL} = req.body;
+    console.log("req", req.body)
 
     try{
         const response = await axios.get(
-            "https://my-portfolio-ashy-kappa.vercel.app/"
+            "http://localhost:3000"
         );
         const $ = cheerio.load(response.data);
 
